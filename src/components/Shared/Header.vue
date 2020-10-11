@@ -11,7 +11,6 @@
 <script>
 </script>
 
-<style lang='sass'>
-    h1
-        color: yellow
+<style>
+
 </style>

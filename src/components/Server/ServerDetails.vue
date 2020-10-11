@@ -8,6 +8,7 @@
 <script>
 </script>
 
-<style lang='sass'>
-
+<style scoped lang='sass'>
+    div
+        border: 1px solid red
 </style>
