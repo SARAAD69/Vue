@@ -2,25 +2,29 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <app-user></app-user>
+               <app-quote>
+                   <h2 slot="title">{{quoteTitle}}</h2>
+                    <p>A wonderful Quote</p>
+               </app-quote>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import User from './components/User.vue';
+    import Quote from './components/Quote';
 
     export default {
+        data: () => {
+            return {
+                quoteTitle: 'The Quote'
+            }
+        },
         components: {
-            appUser: User
+            appQuote: Quote
         }
     }
 </script>
 
 <style lang='sass'>
-    div.component 
-        border: 1px solid black
-        padding: 30px
-    
 </style>
