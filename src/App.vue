@@ -1,47 +1,16 @@
 <template>
     <div class="container">
-        <form v-if="!submitted">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <app-full-name v-model="fullName"></app-full-name>
-                    <div class="form-group">
-                        <label for="email">Mail</label>
-                        <input type="text" class="form-control" v-model="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" v-model="password">
-                    </div>
-                    <div class="form-group">
-                        <label for="yes">
-                            <input type="radio" value="Yes" v-model="storeData"> Yes
-                        </label>
-                        <label for="no">
-                            <input type="radio" value="No" v-model="storeData"> No
-                        </label>
-                    </div>
-                    <button
-                        type="submit"
-                        @click.prevent="submitted = true"
-                        class="btn btn-primary">
-                        Submit the Form
-                    </button>
-                </div>
-            </div>
-        </form>
-        <hr>
-        <div class="row" v-if="submitted">
+        <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Your Data</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Full Name: {{ fullName }}</p>
-                        <p>Mail: {{ email }}</p>
-                        <p>Password: {{ password }}</p>
-                        <p>Store in Database?: {{ storeData }}</p>
-                    </div>
+                <h1>Directives Exercise</h1>
+                <!-- Exercise -->
+                <!-- Build a Custom Directive which works like v-on (Listen for Events) -->
+                <button v-customOn:click="clicked" class="btn btn-primary">Click Me</button>
+                <hr>
+                <div
+                        style="width: 100px; height: 100px; background-color: lightgreen"
+                        v-customOn:mouseenter="mouseEnter"
+                        v-customOn:mouseleave="mouseLeave">
                 </div>
             </div>
         </div>
@@ -49,24 +18,32 @@
 </template>
 
 <script>
-    import FullName from './FullName.vue';
-
     export default {
-        data() {
-            return {
-                fullName: 'Artemii Chernega',
-                email: '',
-                password: '',
-                storeData: 'Yes',
-                submitted: false
+        directives: {
+            customOn: {
+                bind(el, binding) {
+//                    el.onclick = function() {
+//                        binding.value();
+//                    }
+                    const type = binding.arg;
+                    const fn = binding.value;
+                    el.addEventListener(type, fn);
+                }
             }
         },
-        components: {
-            appFullName: FullName
+        methods: {
+            clicked() {
+                alert('I was clicked!');
+            },
+            mouseEnter() {
+                console.log('Mouse entered!');
+            },
+            mouseLeave() {
+                console.log('Mouse leaved!');
+            }
         }
     }
 </script>
 
-<style lang="sass" scoped>
-
+<style>
 </style>
