@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 
 axios.defaults.baseURL = 'https://vue-stock-trader-58144-default-rtdb.firebaseio.com'
-axios.defaults.headers.common['Autorization'] = 'bruh'
+//axios.defaults.headers.common['Autorization'] = 'bruh'
 axios.defaults.headers.get['Accepts'] = 'application/json'
 
 const reqInt = axios.interceptors.request.use(config => {
